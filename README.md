@@ -15,3 +15,5 @@ Of course, if the converter is well done, it should allow you to convert actual 
 Thanks for the project idea for Josef Cruz (https://javascript.plainenglish.io/9-super-creative-project-ideas-for-junior-web-developers-e8181e6f4eef)
 
 https://whatthingsweigh.com/
+
+Thanks for the pretty, responsive HTML template for Amiechen (https://github.com/amiechen/codrops-scribbler)

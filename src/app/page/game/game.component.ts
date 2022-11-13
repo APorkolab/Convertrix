@@ -7,8 +7,11 @@ import { Item } from 'src/app/model/item';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+
+
   listOfAllCard: Item[] = [
     {
+      "id": 1,
       "nameEnglish": "average automobile",
       "nameHungarian": "átlagos személyautó",
       "length": 4.48056,
@@ -17,6 +20,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A különböző gyártók és modellek különböző méretű autókkal rendelkeznek, a szabványos személygépkocsik és teherautók jellemzően 10-18 láb hosszúak. Egy középkategóriás szedán körülbelül 14 láb hosszú, míg egy kisebb autó, például egy Mini Cooper körülbelül 10 láb hosszú."
     },
     {
+      "id": 2,
       "nameEnglish": "average office printer",
       "nameHungarian": "átlagos irodai nyomtató",
       "length": 1.6,
@@ -25,6 +29,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Babbage a 19. században a differenciamotorjához tervezett mechanikus meghajtású készülék volt, azonban a mechanikus nyomtató tervét csak 2000-ben építették meg."
     },
     {
+      "id": 3,
       "nameEnglish": "planet Jupiter",
       "nameHungarian": "Jupiter bolygó",
       "length": 143070682,
@@ -33,6 +38,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A Jupiteren sávok jelennek meg, ahol akár 400 mérföld/óra sebességű szél is fújhat, és a Jupiternek van egy úgynevezett Nagy Vörös Foltja is. Ez egy hatalmas hurrikán, amely több mint háromszor akkora, mint a Föld, és már több mint 300 éve létezik!"
     },
     {
+      "id": 4,
       "nameEnglish": "Eiffel Tower",
       "nameHungarian": "Eiffel-torony",
       "length": 324,
@@ -41,6 +47,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Nevét Gustave Eiffel mérnökről kapta, akinek cége tervezte és építette a tornyot."
     },
     {
+      "id": 5,
       "nameEnglish": "Great Pyramid of Giza",
       "nameHungarian": "Gízai nagy piramis",
       "length": 232.4,
@@ -49,6 +56,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A gízai Nagy Piramis a legnagyobb egyiptomi piramis és a negyedik dinasztia egyik fáraójának, Khufunak a sírja. A Kr. e. 26. század elején épült, mintegy 27 év alatt."
     },
     {
+      "id": 6,
       "nameEnglish": "Oscar Academy Award",
       "nameHungarian": "Oscar-díj",
       "length": 0.3429,
@@ -57,6 +65,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Minden szobor bronzból készül, 24 karátos arannyal van bevonva, és előállítása körülbelül 400 dollárba kerül."
     },
     {
+      "id": 7,
       "nameEnglish": "Turkish Angora cat",
       "nameHungarian": "török angóramacska",
       "length": 0.28,
@@ -65,6 +74,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A világ legnehezebb házimacskáját Himmy-nek hívják, és a súlya kolosszális 46,8 font (21,3 kg)."
     },
     {
+      "id": 8,
       "nameEnglish": "French Bulldog",
       "nameHungarian": "francia buldog",
       "length": 0.35,
@@ -73,6 +83,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A tizenkilencedik század elejétől kezdve az Egyesült Királyságban a buldogokat a hagyományos véres sportoktól eltérő célokra tenyésztették, mint például a bikavadászat, amelyet 1835-ben betiltottak."
     },
     {
+      "id": 9,
       "nameEnglish": "M size man T-Shirt",
       "nameHungarian": "M-es méretű férfi póló",
       "length": 0.91,
@@ -81,6 +92,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Az első promóciós célokra használt póló az Óz, a csodák csodája című filmhez készült 1939-ben."
     },
     {
+      "id": 10,
       "nameEnglish": "egy millió dollár",
       "nameHungarian": "Million Dollars",
       "length": 1.0922,
@@ -89,6 +101,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Egy egymillió dollárnyi 100 dolláros bankjegy 43 hüvelyk magas (10 000 x 0043 hüvelyk = 43 hüvelyk)"
     },
     {
+      "id": 11,
       "nameEnglish": "an average US man",
       "nameHungarian": "egy átlagos USA-beli férfi",
       "length": 1.76,
@@ -97,6 +110,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Az átlagos amerikai férfi alig kevesebb mint 5 láb, 10 hüvelyk - pontosabban körülbelül 5 láb, 9,3 hüvelyk. Ez nagyjából 176 centiméter. Ezzel a mérőszámmal az USA a 37. helyen áll a férfiak testmagasságát tekintve világszerte."
     },
     {
+      "id": 12,
       "nameEnglish": "Internet",
       "nameHungarian": "internet",
       "length": 0,
@@ -105,6 +119,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Attól függően, hogy Russell Seitzre vagy a Discovery Magazine-ra hivatkozunk, az internet súlya vagy 60 gramm, vagy 6 mikrogramm. Ha bíznánk Seitz számításaiban, akkor az internet egésze nem nehezebb, mint egy teniszlabda."
     },
     {
+      "id": 13,
       "nameEnglish": "HTMS Chakri Naruebet Aircraft Carrier",
       "nameHungarian": "HTMS Chakri Naruebet repülőgép-hordozó anyahajó",
       "length": 183,
@@ -113,6 +128,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Tudtad, hogy a brazil haditengerészet egyszer megpróbálta eladni az egyik repülőgép-hordozóját az eBay-en? Sajnos nem érkezett rá ajánlat. Nehéz lenne egy ilyen hajót a környékbeli tavon tárolni!"
     },
     {
+      "id": 14,
       "nameEnglish": "handgranade",
       "nameHungarian": "kézigránát",
       "length": 0.4,
@@ -121,6 +137,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Egy gránát biztosítószegének foggal való kihúzása gyakran látható a hollywoodi háborús filmekben, de az igazság az, hogy ha te magad próbálnád ki, valószínűleg legalább 3 fogat is kihúznál a biztosítószeggel együtt."
     },
     {
+      "id": 15,
       "nameEnglish": "Passport",
       "nameHungarian": "útlevél",
       "length": 0.023,
@@ -129,6 +146,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "2002 óta több mint 40 millió útlevél vagy úti okmány elvesztését vagy ellopását jelentették be."
     },
     {
+      "id": 16,
       "nameEnglish": "Paperclip",
       "nameHungarian": "Gémkapocs",
       "length": 0.0025,
@@ -137,6 +155,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A 2. világháború alatt a nácik betiltották a gemkapcsokat, mivel azok az egység jelképévé váltak."
     },
     {
+      "id": 17,
       "nameEnglish": "concert grand piano",
       "nameHungarian": "hangversenyzongora",
       "length": 2.9,
@@ -145,6 +164,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "A világ legdrágább zongorája egy kristályzongora volt, amely 2008-ban 3,2 millió dollárért kelt el."
     },
     {
+      "id": 18,
       "nameEnglish": "A Head Of Cauliflower",
       "nameHungarian": "Egy karfiolfej",
       "length": 0.5,
@@ -153,6 +173,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Peter Glazebrook tartja a világ legnagyobb karfioljának termesztési rekordját. Átmérője 6 láb volt, súlya pedig elképesztő 60 font (27,485 kg)!"
     },
     {
+      "id": 19,
       "nameEnglish": "Keg Of Beer",
       "nameHungarian": "Hordó sör",
       "length": 0.59182,
@@ -161,6 +182,7 @@ export class GameComponent implements OnInit {
       "descriptionHungarian": "Melyik államban fogy a legtöbb sör lakosonként? Talán meglepő, hogy a megtiszteltetés Észak-Dakotát éri. Az állam minden lakosa átlagosan 43,6 gallon sört ivott 2013-ban. Ez rengeteg sör."
     },
     {
+      "id": 20,
       "nameEnglish": "The Heaviest Person In The World",
       "nameHungarian": "A világ legsúlyosabb embere",
       "length": 1.85,
@@ -172,9 +194,16 @@ export class GameComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor() {
+
+    let items: Item[] = this.listOfAllCard;
+  }
 
   ngOnInit(): void {
   }
 
+
+  // findItems(item1: Item, item2: Item, which: 'length' | 'weight') {
+  //   this.listOfAllCard.
+  // }
 }
