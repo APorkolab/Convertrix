@@ -7,18 +7,21 @@ import { HomeComponent } from './page/home/home.component';
 import { GameComponent } from './page/game/game.component';
 import { ContactComponent } from './page/contact/contact.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GameComponent,
-    ContactComponent
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HighlightModule,
+    FormsModule,
   ],
   providers: [
     {

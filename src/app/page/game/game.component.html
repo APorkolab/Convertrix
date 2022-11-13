@@ -1,23 +1,45 @@
 <div class="wrapper">
 	<div class="keybinding">
 		<ul class="keybinding__detail">
-			<h3 class="keybinding__title">Default Keybindings</h3>
-			<li>Quit without saving <span class="keybinding__label">Ctrl+C</span></li>
-			<li>Save <span class="keybinding__label">Cmd+S</span></li>
-			<li>Save and Quit <span class="keybinding__label">Ctrl+D</span></li>
-			<li>Undo <span class="keybinding__label">Cmd+Z</span></li>
+			<h3 class="keybinding__title">Convert...</h3>
+			<!-- <li><span class="keybinding__label">Quantity</span></li> -->
+			<label for="quantity" class="keybinding__label">Quantity:</label><br>
+			<input type="number" [(ngModel)]="quantity" value="1" id="quantity" name="quantity" min="1" required
+				placeholder="Enter the quantity you would like to convert"><br>
+			<select [(ngModel)]="firstItem">
+
+				<option class="keybinding__label" *ngFor="let obj of this.listOfAllCard" [value]="obj.id">{{obj.nameEnglish}}
+				</option>
+				<option selected hidden [selected]="ngSelect1">
+				</option>
+			</select>
+			<!-- <li>Undo <span class="keybinding__label">Cmd+Z</span></li> -->
 		</ul>
+
 		<ul class="keybinding__detail">
-			<h3 class="keybinding__title">Markdown Keybindings</h3>
-			<li><span class="keybinding__label">Ctrl+A</span> Insert Link Markdown</li>
-			<li><span class="keybinding__label">Ctrl+I</span> Insert Image Markdown</li>
-			<li><span class="keybinding__label">Ctrl+V</span> Insert YouTube Video</li>
-			<li><span class="keybinding__label">Ctrl+T</span> Insert Table</li>
+			<label for="property" class="keybinding__label">by the </label><br>
+			<select [(ngModel)]="property">
+				<option value="length" selected [selected]="'length'">length</option>
+				<option value="weight">weight</option>
+			</select>
+			<li> <span class="keybinding__label">property</span></li>
+		</ul>
+
+		<ul class="keybinding__detail">
+			<h3 class="keybinding__title">into</h3>
+			<select [(ngModel)]="secondItem">
+				<!-- onChange="compareItems(item1,item2,property);" -->
+				<!-- <option [selected]="obj[0]">
+					Select the item you want to convert to
+				</option> -->
+				<option class="keybinding__label" *ngFor="let obj of this.listOfAllCard" [value]="obj.id">{{obj.nameEnglish}}
+				</option>
+			</select>
 		</ul>
 	</div>
 	<div class="callout">
 		<p>Read our documentation for advanced keybindings and customization</p>
-		<a href="doc.html" class="button--primary">Documentation</a>
+		<a class="button--primary" (click)="compareItems(firstItem,secondItem,property, quantity)">Documentation</a>
 	</div>
 
 	<div class="hero">
@@ -26,15 +48,7 @@
 	</div>
 	<div class="hero__terminal">
 		<pre>        <!-- Place your demo code here -->
-	        <code class="shell-session demo hljs nginx"><span class="hljs-attribute">hyperyolo</span> <span class="hljs-regexp">~ $</span> scribbler
-	            [Entry mode; press Ctrl+D to save and quit; press Ctrl+C to quit without saving]
-	
-	            ###todo for new year dinner party
-	
-	            - milk
-	            - butter
-	            - green onion
-	            - lots and lots of kiwis 🥝</code>
+	        <code class="shell-session demo hljs nginx"><span class="hljs-attribute">hyperyolo</span> <span class="hljs-regexp">~ $</span> {{finalResult}}</code>
 	      </pre>
 	</div>
 </div>

@@ -1,10 +1,11 @@
 export class Item {
 	[k: string]: any;
-	id: number | string = '';
+	id: number = 0;
 	nameEnglish: string = '';
 	nameHungarian: string = '';
-	length: number = 0.0;
-	weight: number = 0.0;
+	length: string = '';
+	weight: string = '';
 	description: string = '';
 	descriptionHungarian: string = '';
 }
+
