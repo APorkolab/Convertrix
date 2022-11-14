@@ -18,11 +18,10 @@
     <div class="logo"></div>
     <ul class="menu">
       <div class="menu__item toggle"><span></span></div>
-      <li class="menu__item"><a href="/" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
-      <li class="menu__item"><a href="/game" class="link link--dark"><i class="fa fa-gamepad"></i> Game</a>
+      <li class="menu__item"><a [routerLink]="['/']" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+      <li class="menu__item"><a [routerLink]="['/game']" class="link link--dark"><i class="fa fa-gamepad"></i> Game</a>
       </li>
-      <li class="menu__item"><a href="/contact" [routerLink]="['/contact']" class="link link--dark"><i
-            class="fa fa-keyboard-o"></i>
+      <li class="menu__item"><a [routerLink]="['/contact']" class="link link--dark"><i class="fa fa-keyboard-o"></i>
           Contact</a>
       </li>
     </ul>

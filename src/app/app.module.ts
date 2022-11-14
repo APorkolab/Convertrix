@@ -8,7 +8,7 @@ import { GameComponent } from './page/game/game.component';
 import { ContactComponent } from './page/contact/contact.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { FormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     HighlightModule,
     FormsModule,
+    RouterModule
   ],
   providers: [
     {
