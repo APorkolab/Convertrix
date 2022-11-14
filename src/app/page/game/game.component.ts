@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Item } from 'src/app/model/item';
 
 @Component({
@@ -13,11 +13,12 @@ export class GameComponent implements OnInit {
   firstValue!: any;
   secondValue!: any;
   finalResult!: number;
-  quantity!: number;
-
+  @Input() quantity: number = 1;
+  value: number = 0;
   ngSelect1 = 'Select the item what you would like to convert';
   ngSelect2 = 'Select the item you want to convert to';
-  ngSelect3 = 1;
+  firstElement: Item | undefined;
+  secondElement: Item | undefined;
 
   listOfAllCard: Item[] = [
     {
@@ -112,8 +113,8 @@ export class GameComponent implements OnInit {
     },
     {
       "id": 11,
-      "nameEnglish": "an average US man",
-      "nameHungarian": "egy átlagos USA-beli férfi",
+      "nameEnglish": "average US man",
+      "nameHungarian": "átlagos USA-beli férfi",
       "length": "1.76",
       "weight": "89",
       "description": "The average American man stands just under 5 feet, 10 inches -- or about 5 feet, 9.3 inches to be precise. That's roughly 176 centimeters. This measure gives the U.S. it's standing in 37th place for male height worldwide.",
@@ -166,7 +167,7 @@ export class GameComponent implements OnInit {
     },
     {
       "id": 17,
-      "nameEnglish": "concert grand piano",
+      "nameEnglish": "Concert grand piano",
       "nameHungarian": "hangversenyzongora",
       "length": "2.9",
       "weight": "635",
@@ -175,7 +176,7 @@ export class GameComponent implements OnInit {
     },
     {
       "id": 18,
-      "nameEnglish": "A Head Of Cauliflower",
+      "nameEnglish": "Head Of Cauliflower",
       "nameHungarian": "Egy karfiolfej",
       "length": "0.5",
       "weight": "0.840",
@@ -208,20 +209,26 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 
+  sendTheNewValue(UpdatedValue: number): void {
+    this.quantity = UpdatedValue;
+  }
 
   compareItems(item1: number, item2: number, which: string, quantity: number) {
-    let firstElement = this.listOfAllCard.find(item => item.id == item1)!;
-    let secondElement = this.listOfAllCard.find(item => item.id == item2)!;
+    this.firstElement = this.listOfAllCard.find(item => item.id == item1)!;
+    this.secondElement = this.listOfAllCard.find(item => item.id == item2)!;
 
     if (quantity == undefined) {
       quantity = 1;
     }
-    if (firstElement && secondElement) {
+    if (this.firstElement && this.secondElement) {
       if (which === 'length') {
-        this.finalResult = quantity * (parseFloat(secondElement.length) / parseFloat(firstElement.length));
+        this.finalResult = quantity * (parseFloat(this.secondElement.length) / parseFloat(this.firstElement.length));
       } else {
-        this.finalResult = quantity * (parseFloat(firstElement.weight) / parseFloat(secondElement.weight));
+        this.finalResult = quantity * (parseFloat(this.firstElement.weight) / parseFloat(this.secondElement.weight));
       }
     }
 

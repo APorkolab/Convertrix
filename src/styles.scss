@@ -393,16 +393,18 @@ nav {
   padding: 2rem 1rem 1rem 1rem;
   list-style: none;
   line-height: 2rem;
+  text-align: center;
 }
 
 .keybinding__detail:first-child {
-  text-align: right;
+  text-align: center;
   padding-right: 1rem;
 }
 
 .keybinding__detail:last-child {
   padding-left: 1rem;
   margin-left: -1px;
+  text-align: center;
 }
 
 .keybinding__detail:first-child .keybinding__title {

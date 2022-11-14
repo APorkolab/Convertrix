@@ -5,8 +5,10 @@
 			<!-- <li><span class="keybinding__label">Quantity</span></li> -->
 			<label for="quantity" class="keybinding__label">Quantity:</label><br>
 			<input type="number" [(ngModel)]="quantity" value="1" id="quantity" name="quantity" min="1" required
-				placeholder="Enter the quantity you would like to convert"><br>
-			<select [(ngModel)]="firstItem">
+				placeholder="Enter the quantity you would like to convert"
+				(change)="compareItems(firstItem,secondItem,property, quantity)"
+				(ngModelChange)="sendTheNewValue($event); compareItems(firstItem,secondItem,property, quantity)"><br>
+			<select [(ngModel)]="firstItem" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
 
 				<option class="keybinding__label" *ngFor="let obj of this.listOfAllCard" [value]="obj.id">{{obj.nameEnglish}}
 				</option>
@@ -18,7 +20,7 @@
 
 		<ul class="keybinding__detail">
 			<label for="property" class="keybinding__label">by the </label><br>
-			<select [(ngModel)]="property">
+			<select [(ngModel)]="property" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
 				<option value="length" selected [selected]="'length'">length</option>
 				<option value="weight">weight</option>
 			</select>
@@ -27,8 +29,8 @@
 
 		<ul class="keybinding__detail">
 			<h3 class="keybinding__title">into</h3>
-			<select [(ngModel)]="secondItem">
-				<!-- onChange="compareItems(item1,item2,property);" -->
+			<select [(ngModel)]="secondItem" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
+				<!-- onChange="compareItems(firstItem,secondItem,property, quantity)" -->
 				<!-- <option [selected]="obj[0]">
 					Select the item you want to convert to
 				</option> -->
@@ -37,18 +39,16 @@
 			</select>
 		</ul>
 	</div>
-	<div class="callout">
-		<p>Read our documentation for advanced keybindings and customization</p>
-		<a class="button--primary" (click)="compareItems(firstItem,secondItem,property, quantity)">Documentation</a>
-	</div>
 
 	<div class="hero">
-		<h1 class="hero__title">Scribbler</h1>
-		<p class="hero__description">Take your markdown notes in terminal</p>
+		<h1 class="hero__title">The Convertrix calculates the weights and lengths of weird elements</h1>
+		<p class="hero__description">Also relative to each
+			other</p>
 	</div>
-	<div class="hero__terminal">
+	<div class="hero__terminal" *ngIf="firstItem && secondItem && property">
 		<pre>        <!-- Place your demo code here -->
-	        <code class="shell-session demo hljs nginx"><span class="hljs-attribute">hyperyolo</span> <span class="hljs-regexp">~ $</span> {{finalResult}}</code>
+	        <code class="shell-session demo hljs nginx"><span class="hljs-attribute">Convertrix v.1.0.0</span> <span class="hljs-regexp">~ $ </span>{{quantity}} {{firstElement?.nameEnglish}}(s) {{property}} the same as {{finalResult | number : '1.2-4'}} {{secondElement?.nameEnglish}}(s)
+						<br><br><span class="hljs-attribute">By the way... Do you know?</span> <span class="hljs-regexp">~ $ </span><br> {{firstElement?.description}}</code>
 	      </pre>
 	</div>
 </div>
