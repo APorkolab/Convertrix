@@ -226,9 +226,9 @@ export class GameComponent implements OnInit {
     }
     if (this.firstElement && this.secondElement) {
       if (which === 'length') {
-        this.finalResult = quantity * (parseFloat(this.secondElement.length) / parseFloat(this.firstElement.length));
+        this.finalResult = quantity * (parseFloat(this.firstElement.length) / parseFloat(this.secondElement.length));
       } else {
-        this.finalResult = quantity * (parseFloat(this.secondElement.weight) / parseFloat(this.firstElement.weight));
+        this.finalResult = quantity * (parseFloat(this.firstElement.weight) / parseFloat(this.secondElement.weight));
       }
     }
 
