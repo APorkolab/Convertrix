@@ -9,6 +9,9 @@ import { ContactComponent } from './page/contact/contact.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { HeadbarComponent } from './common/headbar/headbar.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,16 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     GameComponent,
     ContactComponent,
+    HeadbarComponent,
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HighlightModule,
+    HttpClientModule,
     FormsModule,
-    RouterModule
+    CommonModule
   ],
   providers: [
     {
