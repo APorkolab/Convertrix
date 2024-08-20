@@ -22,7 +22,7 @@ export class ContactComponent implements OnInit {
 				            [Entry mode; press Ctrl+D to save and quit; press Ctrl+C to quit without saving]
 				
 				            ### The programmer of this application is Ádám Dr. Porkoláb.
-                    You can contact him by his webpage:  https://www.pklab.hu
+                    You can contact him by his webpage:  https://www.adamporkolab.hu
 				
 				            - The GitHub page of the author: https://github.com/APorkolab/`;
       var speed = 60;
