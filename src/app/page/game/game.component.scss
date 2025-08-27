@@ -1,0 +1,54 @@
+.wrapper {
+  padding: 2rem;
+  background-color: var(--light-gray-color);
+}
+
+.keybinding {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keybinding__detail {
+  margin-bottom: 1rem;
+}
+
+.keybinding__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--medium-gray-color);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.hero__title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero__description {
+  font-size: 1.25rem;
+  color: var(--primary-color-light);
+}
+
+.hero__terminal {
+  background-color: var(--dark-gray-color);
+  color: var(--white-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

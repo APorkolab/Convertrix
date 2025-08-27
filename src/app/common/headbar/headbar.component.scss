@@ -1,0 +1,21 @@
+nav {
+  background-color: var(--white-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+}
+
+.menu__item a {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease-out;
+}
+
+.menu__item a:hover {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+}
+
+.menu__item a.active {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+}

@@ -6,10 +6,10 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { combineLatest, map, Observable, of } from 'rxjs';
 import { Item } from 'src/app/model/item';
-import { ConvertService } from 'src/app/service/convert.service';
-
-type PropKind = 'length' | 'weight';
+import { ConvertService, PropKind } from 'src/app/service/convert.service';
+import { TranslateService } from 'src/app/service/translate.service';
 
 @Component({
   selector: 'app-game',
@@ -22,40 +22,43 @@ export class GameComponent implements OnInit, OnChanges {
   // --- Input ---
   @Input() quantity = 1;
 
-  // --- UI szövegek ---
-  readonly selectFromPlaceholder = 'Select the item you would like to convert';
-  readonly selectToPlaceholder = 'Select the item you want to convert to';
+  // --- UI texts ---
+  selectFromPlaceholder$ = this.translate.get('select_from_placeholder');
+  selectToPlaceholder$ = this.translate.get('select_to_placeholder');
 
-  // --- Adatforrás ---
-  listOfAllCard: readonly Item[] = [];
+  // --- Data source ---
+  listOfAllCard$: Observable<readonly Item[]> = of([]);
 
-  // --- Kiválasztások (a template hivatkozik ezekre) ---
+  // --- Selections (the template refers to them) ---
   firstElement: Item | null = null;
   secondElement: Item | null = null;
   property: PropKind | null = null;
 
-  // --- Belső azonosítók a számításhoz ---
+  // --- Internal IDs for calculation ---
   private _fromId: number | null = null;
   private _toId: number | null = null;
 
-  // --- Eredmény ---
+  // --- Result ---
   private _finalResult = 0;
   get finalResult(): number {
     return this._finalResult;
   }
 
-  constructor(private readonly convertService: ConvertService) {}
+  constructor(
+    private readonly convertService: ConvertService,
+    private readonly translate: TranslateService
+  ) {}
 
   // ---- Lifecycle ----
   ngOnInit(): void {
-    this.listOfAllCard = this.convertService.getItems();
+    this.listOfAllCard$ = this.convertService.getItems();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('quantity' in changes) this.recompute();
   }
 
-  // ---- Template által hívott publikus metódusok ----
+  // ---- Public methods called by the template ----
   setFrom(id: number | null): void {
     this._fromId = id;
     this.recompute();
@@ -71,7 +74,7 @@ export class GameComponent implements OnInit, OnChanges {
     this.recompute();
   }
 
-  // A template hivatkozik rá, ezért publikus
+  // It is public because it is referenced by the template
   recompute(): void {
     if (this._fromId == null || this._toId == null || this.property == null) {
       this._finalResult = 0;
@@ -83,5 +86,17 @@ export class GameComponent implements OnInit, OnChanges {
       this.property,
       this.quantity
     );
+
+    // Refresh description
+    if (this._fromId) {
+      this.convertService.getItem(this._fromId).subscribe((it) => {
+        if (this.firstElement) this.firstElement.description = it!.description;
+      });
+    }
+    if (this._toId) {
+      this.convertService.getItem(this._toId).subscribe((it) => {
+        if (this.secondElement) this.secondElement.description = it!.description;
+      });
+    }
   }
 }

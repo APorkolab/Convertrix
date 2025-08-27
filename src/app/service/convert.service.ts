@@ -1,14 +1,27 @@
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { Item } from '../model/item';
+import { Language } from '../model/language';
+import { TranslateService } from './translate.service';
 
 export type PropKind = 'length' | 'weight';
+
+interface ItemSource {
+  id: number;
+  nameEnglish: string;
+  nameHungarian: string;
+  length: number;
+  weight: number;
+  description: string;
+  descriptionHungarian: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConvertService {
   // --- Master data (immutable) ---
-  private readonly items: readonly Item[] = [
+  private readonly items: readonly ItemSource[] = [
     {
       id: 1,
       nameEnglish: 'average automobile',
@@ -231,20 +244,57 @@ export class ConvertService {
     },
   ];
 
-  // --- Index gyors kereséshez ---
-  private readonly byId = new Map<number, Item>();
+  // --- Index for fast search ---
+  private readonly byId = new Map<
+    number,
+    Omit<Item, 'name' | 'description'>
+  >();
+  private readonly byIdCache = new Map<Language, Map<number, Item>>();
 
-  constructor() {
+  constructor(private readonly translate: TranslateService) {
     for (const it of this.items) this.byId.set(it.id, it);
+
+    this.translate.language$.subscribe((lang) => {
+      const cache = this.byIdCache.get(lang) ?? new Map<number, Item>();
+      if (cache.size > 0) return; // already warm
+
+      for (const it of this.items) {
+        cache.set(
+          it.id,
+          new Item(
+            it.id,
+            lang === Language.HUNGARIAN ? it.nameHungarian : it.nameEnglish,
+            it.length,
+            it.weight,
+            lang === Language.HUNGARIAN
+              ? it.descriptionHungarian
+              : it.description
+          )
+        );
+      }
+      this.byIdCache.set(lang, cache);
+    });
   }
 
   // --- Public API ---
-  getItems(): readonly Item[] {
-    return this.items;
+  getItems(): Observable<readonly Item[]> {
+    return this.translate.language$.pipe(
+      map((lang) => {
+        const cache = this.byIdCache.get(lang);
+        if (!cache) return [];
+        return Array.from(cache.values());
+      })
+    );
   }
 
-  getItem(id: number): Item | undefined {
-    return this.byId.get(id);
+  getItem(id: number): Observable<Item | undefined> {
+    return this.translate.language$.pipe(
+      map((lang) => {
+        const cache = this.byIdCache.get(lang);
+        if (!cache) return undefined;
+        return cache.get(id);
+      })
+    );
   }
 
   compareItems(

@@ -12,10 +12,10 @@
       <select id="from" name="from" [ngModel]="firstElement"
         (ngModelChange)="firstElement = $event; setFrom($event?.id ?? null)">
         <option [ngValue]="null" class="keybinding__label">
-          {{ selectFromPlaceholder }}
+          {{ selectFromPlaceholder$ | async }}
         </option>
-        <option *ngFor="let obj of listOfAllCard" [ngValue]="obj" class="keybinding__label">
-          {{ obj.nameEnglish }}
+        <option *ngFor="let obj of listOfAllCard$ | async" [ngValue]="obj" class="keybinding__label">
+          {{ obj.name }}
         </option>
       </select>
     </ul>
@@ -37,10 +37,10 @@
       <select id="to" name="to" [ngModel]="secondElement"
         (ngModelChange)="secondElement = $event; setTo($event?.id ?? null)">
         <option [ngValue]="null" class="keybinding__label">
-          {{ selectToPlaceholder }}
+          {{ selectToPlaceholder$ | async }}
         </option>
-        <option *ngFor="let obj of listOfAllCard" [ngValue]="obj" class="keybinding__label">
-          {{ obj.nameEnglish }}
+        <option *ngFor="let obj of listOfAllCard$ | async" [ngValue]="obj" class="keybinding__label">
+          {{ obj.name }}
         </option>
       </select>
     </ul>
@@ -56,7 +56,7 @@
   <section class="hero__terminal" *ngIf="firstElement && secondElement && property">
     <pre>
 <code class="shell-session demo hljs nginx">
-<span class="hljs-attribute">Convertrix v.1.0.0</span> <span class="hljs-regexp">~ $ </span>{{ quantity }} {{ firstElement.nameEnglish }}(s) {{ property }} the same as {{ finalResult | number:'1.2-4' }} {{ secondElement.nameEnglish }}(s).
+<span class="hljs-attribute">Convertrix v.1.0.0</span> <span class="hljs-regexp">~ $ </span>{{ quantity }} {{ firstElement.name }}(s) {{ property }} the same as {{ finalResult | number:'1.2-4' }} {{ secondElement.name }}(s).
 
 <br><br><span class="hljs-attribute">By the way... Do you know?</span> <span class="hljs-regexp">~ $ </span><br> {{ firstElement.description }}
 </code>
