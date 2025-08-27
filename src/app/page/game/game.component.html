@@ -1,51 +1,100 @@
 <div class="wrapper">
-	<div class="keybinding">
-		<ul class="keybinding__detail">
-			<h3 class="keybinding__title">Convert...</h3>
-			<!-- <li><span class="keybinding__label">Quantity</span></li> -->
-			<label for="quantity" class="keybinding__label">Quantity:</label><br>
-			<input type="number" [(ngModel)]="quantity" value="1" id="quantity" name="quantity" min="1" required
-				placeholder="Enter the quantity you would like to convert"
-				(change)="compareItems(firstItem,secondItem,property, quantity)"
-				(ngModelChange)="sendTheNewValue($event); compareItems(firstItem,secondItem,property, quantity)"><br>
-			<select [(ngModel)]="firstItem" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
+  <div class="keybinding">
+    <ul class="keybinding__detail">
+      <h3 class="keybinding__title">Convert...</h3>
+      <!-- <li><span class="keybinding__label">Quantity</span></li> -->
+      <label for="quantity" class="keybinding__label">Quantity:</label
+      ><br />
+      <input
+        type="number"
+        [(ngModel)]="quantity"
+        value="1"
+        id="quantity"
+        name="quantity"
+        min="1"
+        required
+        placeholder="Enter the quantity you would like to convert"
+        (change)="compareItems(firstItem, secondItem, property, quantity)"
+        (ngModelChange)="
+          sendTheNewValue($event);
+          compareItems(firstItem, secondItem, property, quantity)
+        "
+      /><br />
+      <select
+        [(ngModel)]="firstItem"
+        (ngModelChange)="
+          compareItems(firstItem, secondItem, property, quantity)
+        "
+      >
+        <option [ngValue]="undefined" selected class="keybinding__label">
+          Select the item you want to convert
+        </option>
+        <option
+          class="keybinding__label"
+          *ngFor="let obj of this.listOfAllCard"
+          [value]="obj.id"
+        >
+          {{ obj.nameEnglish }}
+        </option>
+      </select>
+    </ul>
 
-				<option [ngValue]="undefined" selected class="keybinding__label">Select the item you want to convert</option>
-				<option class="keybinding__label" *ngFor="let obj of this.listOfAllCard" [value]="obj.id">{{obj.nameEnglish}}
-				</option>
-			</select>
-		</ul>
+    <ul class="keybinding__detail">
+      <label for="property" class="keybinding__label">by the </label
+      ><br />
+      <select
+        [(ngModel)]="property"
+        (ngModelChange)="
+          compareItems(firstItem, secondItem, property, quantity)
+        "
+      >
+        <option class="keybinding__label" [ngValue]="undefined" selected>
+          Select
+        </option>
+        <option
+          class="keybinding__label"
+          value="length"
+          selected
+          [selected]="'length'"
+        >
+          length
+        </option>
+        <option class="keybinding__label" value="weight">weight</option>
+      </select>
+      <li><span class="keybinding__label">property</span></li>
+    </ul>
 
-		<ul class="keybinding__detail">
-			<label for="property" class="keybinding__label">by the </label><br>
-			<select [(ngModel)]="property" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
-				<option class="keybinding__label" [ngValue]="undefined" selected>Select</option>
-				<option class="keybinding__label" value="length" selected [selected]="'length'">length</option>
-				<option class="keybinding__label" value="weight">weight</option>
-			</select>
-			<li> <span class="keybinding__label">property</span></li>
-		</ul>
-
-		<ul class="keybinding__detail">
-			<h3 class="keybinding__title">into...</h3>
-			<select [(ngModel)]="secondItem" (ngModelChange)="compareItems(firstItem,secondItem,property, quantity)">
-				<option [ngValue]="undefined" selected class="keybinding__label">Select the item you want into convert to
-				</option>
-				<option class="keybinding__label" *ngFor="let obj of this.listOfAllCard" [value]="obj.id">
-					{{obj.nameEnglish}}
-				</option>
-			</select>
-		</ul>
-	</div>
-	<div class="hero">
-		<h1 class="hero__title">The Convertrix calculates the weights and lengths of weird elements</h1>
-		<p class="hero__description">Also relative to each
-			other</p>
-	</div>
-	<div class="hero__terminal" *ngIf="firstItem && secondItem && property">
-		<pre>
+    <ul class="keybinding__detail">
+      <h3 class="keybinding__title">into...</h3>
+      <select
+        [(ngModel)]="secondItem"
+        (ngModelChange)="
+          compareItems(firstItem, secondItem, property, quantity)
+        "
+      >
+        <option [ngValue]="undefined" selected class="keybinding__label">
+          Select the item you want into convert to
+        </option>
+        <option
+          class="keybinding__label"
+          *ngFor="let obj of this.listOfAllCard"
+          [value]="obj.id"
+        >
+          {{ obj.nameEnglish }}
+        </option>
+      </select>
+    </ul>
+  </div>
+  <div class="hero">
+    <h1 class="hero__title">
+      The Convertrix calculates the weights and lengths of weird elements
+    </h1>
+    <p class="hero__description">Also relative to each other</p>
+  </div>
+  <div class="hero__terminal" *ngIf="firstItem && secondItem && property">
+    <pre>
 						<code class="shell-session demo hljs nginx"><span class="hljs-attribute">Convertrix v.1.0.0</span> <span class="hljs-regexp">~ $ </span>{{quantity}} {{firstElement?.nameEnglish}}(s) {{property}} the same as {{finalResult | number : '1.2-4'}} {{secondElement?.nameEnglish}}(s).
 							<br><br><span class="hljs-attribute">By the way... Do you know?</span> <span class="hljs-regexp">~ $ </span><br> {{firstElement?.description}}</code>
 					</pre>
-	</div>
+  </div>
 </div>

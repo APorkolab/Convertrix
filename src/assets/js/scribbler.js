@@ -33,13 +33,13 @@ if (document.getElementsByClassName('demo').length > 0) {
 }
 
 // toggle tabs on codeblock
-window.addEventListener("load", function () {
+window.addEventListener('load', function () {
   // get all tab_containers in the document
-  var tabContainers = getAll(".tab__container");
+  var tabContainers = getAll('.tab__container');
 
   // bind click event to each tab container
   for (var i = 0; i < tabContainers.length; i++) {
-    get('.tab__menu', tabContainers[i]).addEventListener("click", tabClick);
+    get('.tab__menu', tabContainers[i]).addEventListener('click', tabClick);
   }
 
   // each click event is scoped to the tab_container
@@ -84,9 +84,9 @@ function smoothScrollTo(i, event) {
   setActiveLink(event);
 
   window.scrollTo({
-    'behavior': 'smooth',
-    'top': element.offsetTop - 20,
-    'left': 0
+    behavior: 'smooth',
+    top: element.offsetTop - 20,
+    left: 0,
   });
 }
 

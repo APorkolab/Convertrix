@@ -4,22 +4,23 @@ import { ContactComponent } from './page/contact/contact.component';
 import { GameComponent } from './page/game/game.component';
 import { HomeComponent } from './page/home/home.component';
 
-const routes: Routes = [{
-  path: '',
-  component: HomeComponent,
-},
-{
-  path: 'contact',
-  component: ContactComponent,
-},
-{
-  path: 'game',
-  component: GameComponent,
-}
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'game',
+    component: GameComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

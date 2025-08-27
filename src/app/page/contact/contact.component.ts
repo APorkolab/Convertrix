@@ -1,31 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { parse } from 'angular-html-parser';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
+  standalone: false,
 })
 export class ContactComponent implements OnInit {
-
-  constructor() {
-
-  }
-
-
+  constructor() {}
 
   ngOnInit(): void {
     // setup typewriter effect in the terminal demo
     if (document.getElementsByClassName('demo').length > 0) {
-      var i = 0;
-      var txt = ` contact_info.md
+      let i = 0;
+      const txt = ` contact_info.md
 				            [Entry mode; press Ctrl+D to save and quit; press Ctrl+C to quit without saving]
 				
 				            ### The programmer of this application is Ádám Dr. Porkoláb.
                     You can contact him by his webpage:  https://www.adamporkolab.hu
 				
 				            - The GitHub page of the author: https://github.com/APorkolab/`;
-      var speed = 60;
+      const speed = 60;
 
       function typeItOut() {
         if (i < txt.length) {
@@ -38,7 +33,4 @@ export class ContactComponent implements OnInit {
       setTimeout(typeItOut, 1800);
     }
   }
-
-
-
 }

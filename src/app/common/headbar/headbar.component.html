@@ -1,14 +1,26 @@
 <nav>
-	<div class="logo"></div>
-	<ul class="menu">
-		<div class="menu__item toggle"><span></span></div>
-		<li class="menu__item"><a class="link link--dark" [routerLink]="['/']" routerLinkActive="active"><i
-					class="fa fa-home"></i> Home</a></li>
-		<li class="menu__item"><a class="link link--dark" [routerLink]="['/game']"><i class="fa fa-gamepad"></i> Game</a>
-		</li>
-		<li class="menu__item"><a [routerLink]="['/contact']" routerLinkActive="active" class="link link--dark"><i
-					class="fa fa-keyboard-o"></i>
-				Contact</a>
-		</li>
-	</ul>
+  <div class="logo"></div>
+  <ul class="menu" [ngClass]="{ responsive: isMenuOpen }">
+    <div class="menu__item toggle" (click)="toggleMenu()" [ngClass]="{ open: isMenuOpen }">
+      <span></span>
+    </div>
+    <li class="menu__item">
+      <a class="link link--dark" [routerLink]="['/']" routerLinkActive="active"
+        ><i class="fa fa-home"></i> Home</a
+      >
+    </li>
+    <li class="menu__item">
+      <a class="link link--dark" [routerLink]="['/game']"
+        ><i class="fa fa-gamepad"></i> Game</a
+      >
+    </li>
+    <li class="menu__item">
+      <a
+        [routerLink]="['/contact']"
+        routerLinkActive="active"
+        class="link link--dark"
+        ><i class="fa fa-keyboard-o"></i> Contact</a
+      >
+    </li>
+  </ul>
 </nav>

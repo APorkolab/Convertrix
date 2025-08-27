@@ -28,7 +28,19 @@ There is no need for preparations before running. Just enjoy the weird data! :)
 
 ## **3. Version history**
 
-Technologies used: Angular 14 and Bootstrap 5, other NPM libraries (see _package.json_ for the exact list).
+Technologies used: Angular 20 and Bootstrap 5, other NPM libraries (see _package.json_ for the exact list).
+
+This project has been updated to use modern best practices, including:
+- **Angular 20:** The latest version of the Angular framework.
+- **ESLint and Prettier:** For code quality and consistent formatting.
+- **Husky:** For pre-commit hooks to ensure code quality.
+
+### v.2.0.0 (2025-08-26)
+
+- Updated to Angular 20.
+- Refactored the architecture to use a service-based approach.
+- Improved code quality and test coverage.
+- Added ESLint, Prettier, and Husky.
 
 ### v.1.0.0 (2022-11-01)
 
@@ -58,32 +70,18 @@ Technologies used: Angular 14 and Bootstrap 5, other NPM libraries (see _package
 
 ## **4. Install the application**
 
-1.  If you do not have the Git version control software installed, download and install the version for your operating system from [https://git-scm.com](https://git-scm.com/).
-2.  If you do not have the NodeJS runtime environment installed, download and install the version marked "LTS" from [https://nodejs.org/en/](https://nodejs.org/en/).
-3.  If you do not have the Angular framework installed on your system, do so by issuing the `npm i -g @angular/cli` command in PowerShell.
-4.  Clone the contents of the relevant GitHub repository. So in PowerShell, issue the following command:
-
-    `git clone https://github.com/APorkolab/Convertrix.git`
-
-5.  **Point 2 provides instructions. Please follow them.**
-
-6.  Install the application dependencies: - In the terminal, go to the /backend folder (`cd backend`) and run `npm i`.
-
-    - frontend
-
-      - On the terminal, run `npm i`.\*
-
-7.1. For manual installation:
-
-- In the terminal, issue the `ng build` command.
-- The contents of the /dist folder must be copied to the webserver if you want to deploy it.
-
-OR
-
-7.2. For automatic installation:
-
-- In the terminal, run the `npm run build` command.
-- It is important to install using only one of the methods.
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/APorkolab/Convertrix.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd Convertrix
+    ```
+3.  Install the dependencies:
+    ```bash
+    npm install
+    ```
 
 ## **5. Configure the application**
 
