@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../model/item';
 
+export type PropKind = 'length' | 'weight';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ConvertService {
-  private listOfAllCard: Item[] = [
+  // --- Master data (immutable) ---
+  private readonly items: readonly Item[] = [
     {
       id: 1,
       nameEnglish: 'average automobile',
@@ -228,31 +231,38 @@ export class ConvertService {
     },
   ];
 
-  constructor() {}
+  // --- Index gyors kereséshez ---
+  private readonly byId = new Map<number, Item>();
 
-  getItems(): Item[] {
-    return this.listOfAllCard;
+  constructor() {
+    for (const it of this.items) this.byId.set(it.id, it);
+  }
+
+  // --- Public API ---
+  getItems(): readonly Item[] {
+    return this.items;
+  }
+
+  getItem(id: number): Item | undefined {
+    return this.byId.get(id);
   }
 
   compareItems(
-    item1Id: number,
-    item2Id: number,
-    which: string,
-    quantity: number
+    item1Id: number | null | undefined,
+    item2Id: number | null | undefined,
+    which: PropKind | null | undefined,
+    quantity: number | null | undefined
   ): number {
-    const firstElement = this.listOfAllCard.find((item) => item.id == item1Id)!;
-    const secondElement = this.listOfAllCard.find(
-      (item) => item.id == item2Id
-    )!;
+    const first = item1Id != null ? this.byId.get(item1Id) : undefined;
+    const second = item2Id != null ? this.byId.get(item2Id) : undefined;
+    const q = Number(quantity ?? 1);
 
-    if (quantity == undefined) {
-      quantity = 1;
-    }
+    if (!first || !second || !which || !isFinite(q) || q <= 0) return 0;
 
     if (which === 'length') {
-      return quantity * (firstElement.length / secondElement.length);
-    } else {
-      return quantity * (firstElement.weight / secondElement.weight);
+      return second.length === 0 ? 0 : q * (first.length / second.length);
     }
+    // which === 'weight'
+    return second.weight === 0 ? 0 : q * (first.weight / second.weight);
   }
 }
