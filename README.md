@@ -1,5 +1,5 @@
 
-# Convertrix v.1.0.0 - documentation
+# Convertrix v.2.0.0 - documentation
 
 ## 1. The description of the task
 
@@ -104,7 +104,7 @@ This work by [Ádám Dr. Porkoláb](https://porkolab.digital/) is licensed under
 Based on a work at [](https://github.com/APorkolab/)[https://github.com/APorkolab/](https://github.com/APorkolab/).
 
 ----------
-# Convertrix v.1.0.0 - dokumentáció
+# Convertrix v.2.0.0 - dokumentáció
 
 ## 1. A feladat leírása
 
