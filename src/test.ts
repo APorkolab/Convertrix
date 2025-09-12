@@ -7,24 +7,18 @@ import {
   platformBrowserDynamicTesting,
 } from '@angular/platform-browser-dynamic/testing';
 
-declare const require: {
-  context(
-    path: string,
-    deep?: boolean,
-    filter?: RegExp
-  ): {
-    <T>(id: string): T;
-    keys(): string[];
-  };
-};
-
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
 
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().forEach(context);
+// Import all spec files explicitly
+import './app/app.component.spec';
+import './app/common/headbar/headbar.component.spec';
+import './app/model/item.spec';
+import './app/page/contact/contact.component.spec';
+import './app/page/game/game.component.spec';
+import './app/page/home/home.component.spec';
+import './app/service/convert.service.spec';
+import './app/service/notification.service.spec';
