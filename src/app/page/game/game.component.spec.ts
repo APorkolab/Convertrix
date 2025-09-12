@@ -1,35 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 import { GameComponent } from './game.component';
 import { ConvertService, PropKind } from 'src/app/service/convert.service';
 import { Item } from 'src/app/model/item';
+import { TranslateService } from 'src/app/service/translate.service';
+
+class MockTranslateService {
+  get(key: string): Observable<string> {
+    return of(key);
+  }
+}
 
 class MockConvertService {
   private readonly items: readonly Item[] = [
-    {
-      id: 1,
-      nameEnglish: 'Item 1',
-      nameHungarian: 'Tétel 1',
-      length: 10,
-      weight: 10,
-      description: 'desc 1',
-      descriptionHungarian: 'leírás 1',
-    },
-    {
-      id: 2,
-      nameEnglish: 'Item 2',
-      nameHungarian: 'Tétel 2',
-      length: 20,
-      weight: 20,
-      description: 'desc 2',
-      descriptionHungarian: 'leírás 2',
-    },
+    new Item(1, 'Item 1', 10, 10, 'desc 1'),
+    new Item(2, 'Item 2', 20, 20, 'desc 2'),
   ];
 
-  getItems(): readonly Item[] {
-    return this.items;
+  getItems(): Observable<readonly Item[]> {
+    return of(this.items);
+  }
+
+  getItem(id: number): Observable<Item | undefined> {
+    return of(this.items.find(item => item.id === id));
   }
 
   compareItems(
@@ -51,7 +47,10 @@ describe('GameComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [GameComponent],
       imports: [FormsModule], // ngModel miatt
-      providers: [{ provide: ConvertService, useClass: MockConvertService }],
+      providers: [
+        { provide: ConvertService, useClass: MockConvertService },
+        { provide: TranslateService, useClass: MockTranslateService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameComponent);
@@ -65,7 +64,9 @@ describe('GameComponent', () => {
   });
 
   it('should get items from ConvertService on init', () => {
-    expect(component.listOfAllCard.length).toBe(2);
+    component.listOfAllCard$.subscribe(items => {
+      expect(items.length).toBe(2);
+    });
   });
 
   it('should call ConvertService.compareItems with proper args and update finalResult', () => {

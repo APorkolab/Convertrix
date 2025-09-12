@@ -1,12 +1,28 @@
 import { TestBed } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
 
 import { ConvertService } from './convert.service';
+import { TranslateService } from './translate.service';
+import { Language } from '../model/language';
+
+class MockTranslateService {
+  language$ = of(Language.ENGLISH);
+  
+  get(key: string): Observable<string> {
+    return of(key);
+  }
+}
 
 describe('ConvertService', () => {
   let service: ConvertService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        ConvertService,
+        { provide: TranslateService, useClass: MockTranslateService },
+      ],
+    });
     service = TestBed.inject(ConvertService);
   });
 
@@ -15,9 +31,10 @@ describe('ConvertService', () => {
   });
 
   it('should return a list of items', () => {
-    const items = service.getItems();
-    expect(items).toBeDefined();
-    expect(items.length).toBe(20);
+    service.getItems().subscribe(items => {
+      expect(items).toBeDefined();
+      expect(items.length).toBe(20);
+    });
   });
 
   it('should compare items by length', () => {
