@@ -245,10 +245,7 @@ export class ConvertService {
   ];
 
   // --- Index for fast search ---
-  private readonly byId = new Map<
-    number,
-    Omit<Item, 'name' | 'description'>
-  >();
+  private readonly byId = new Map<number, Omit<Item, 'name' | 'description'>>();
   private readonly byIdCache = new Map<Language, Map<number, Item>>();
 
   constructor(private readonly translate: TranslateService) {

@@ -6,7 +6,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { combineLatest, map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Item } from 'src/app/model/item';
 import { ConvertService, PropKind } from 'src/app/service/convert.service';
 import { TranslateService } from 'src/app/service/translate.service';
@@ -95,7 +95,8 @@ export class GameComponent implements OnInit, OnChanges {
     }
     if (this._toId) {
       this.convertService.getItem(this._toId).subscribe((it) => {
-        if (this.secondElement) this.secondElement.description = it!.description;
+        if (this.secondElement)
+          this.secondElement.description = it!.description;
       });
     }
   }
