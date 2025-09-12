@@ -7,7 +7,6 @@ import { Language } from '../model/language';
 
 class MockTranslateService {
   language$ = of(Language.ENGLISH);
-  
   get(key: string): Observable<string> {
     return of(key);
   }
@@ -31,7 +30,7 @@ describe('ConvertService', () => {
   });
 
   it('should return a list of items', () => {
-    service.getItems().subscribe(items => {
+    service.getItems().subscribe((items) => {
       expect(items).toBeDefined();
       expect(items.length).toBe(20);
     });

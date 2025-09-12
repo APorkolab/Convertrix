@@ -25,7 +25,7 @@ class MockConvertService {
   }
 
   getItem(id: number): Observable<Item | undefined> {
-    return of(this.items.find(item => item.id === id));
+    return of(this.items.find((item) => item.id === id));
   }
 
   compareItems(
@@ -64,7 +64,7 @@ describe('GameComponent', () => {
   });
 
   it('should get items from ConvertService on init', () => {
-    component.listOfAllCard$.subscribe(items => {
+    component.listOfAllCard$.subscribe((items) => {
       expect(items.length).toBe(2);
     });
   });
